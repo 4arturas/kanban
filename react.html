@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <script
+            src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://unpkg.com/react@latest/umd/react.production.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+    <script
+            src="https://unpkg.com/@mui/material@5.14.18/umd/material-ui.production.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://unpkg.com/@babel/standalone@latest/babel.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <title>FAQ</title>
+
+    <style>
+        :root {
+            --white-background-color: #fff;
+
+            --button-active-bg-color1: #faf8f2;
+            --button-active-text-color: #fff;
+            --button-icon-bg-color: #000;
+            --button-icon-color: #fff;
+            --button-active-blue-bg-color: #004187;
+            --button-active-black-bg-color: #000;
+            --button-disabled-bg-color: #e8e8e8;
+            --button-disabled-text-color: #838383;
+            --button-active-blue-text-color: #004187;
+
+            --step-bg-color: #faf8f1;
+        }
+
+        body {
+            font-family: "Manrope", sans-serif !important;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            max-height: 100dvh;
+            width: 100vw;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            max-height: 100dvh;
+            width: 100vw;
+        }
+        .app-content {
+            flex: 1;
+            padding: 0em 0.25em;
+            overflow-y: auto;
+        }
+
+        .white-bg {
+            background-color: var(--white-background-color);
+        }
+
+        .action-header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 75px;
+            padding: 0em 1em;
+        }
+
+        .icon-container {
+            background-color: var(--button-icon-bg-color);
+            height: 20px;
+            display: flex;
+            border-radius: 0.25em;
+        }
+
+        .MuiTypography-root {
+            font-family: "Manrope" !important;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 1em 2em;
+            background-color: var(--step-bg-color);
+            border-radius: 0.5em;
+            margin-bottom: 1em;
+            cursor: pointer;
+        }
+
+        .faq-title {
+            font-size: 1.15em !important;
+            font-weight: 600 !important;
+            flex: 1;
+        }
+
+        .faq-header {
+            font-size: 1.5em !important;
+            font-weight: 600 !important;
+            margin: 1em 0em !important;
+        }
+
+        .faq-title-header {
+            font-size: 1.75em !important;
+            font-weight: 600 !important;
+            margin: 0.5em 0em 1em 0em !important;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/javascript">
+    var faqData = [
+        {
+            title: `What is GitHub and how does it work?`,
+            content: `
+          <p>GitHub is the home for all developers—a platform where you can share code, contribute to open source projects, or even automate your workflow with tools like GitHub Actions and Packages.</p>
+          <p>If you’re just getting started with GitHub, you may know us best as a place for version control and collaboration.</p>
+          `
+        },
+        {
+            title: `How do I see GitHub’s availability?`,
+            content: `<a href="#">Check our real-time status report</a>`
+        },
+        {
+            title: `Why is GitHub so popular?`,
+            content: `
+          <p>GitHub is built by developers for developers, and we’re proud to be home to the world’s largest open source community.</p>
+          <p>With 50 million developers and millions more open source projects, GitHub has become the go-to place to collaborate and build software together.</p>
+          <a href="#">See how we got here</a>
+          `
+        },
+        {
+            title: `Who is GitHub for?`,
+            content: `
+          <p>You!</p>
+          <p>And it’s not just developers who build on GitHub—Fortune 500 companies, small teams, project managers, and college professors all use GitHub to do their best work, in one place.</p>
+          <a href="#">Meet our community</a>
+          `
+        },
+        {
+            title: `Do people use GitHub only for code?`,
+            content: `
+          <p>Nope.</p>
+          <p>Like we mentioned above, different people and teams use GitHub for different projects. While we got our start as a version control platform, GitHub is now used to manage teams, share resumes, find new projects, track work, and host discussions, just to name a few.</p>
+          <a href="#">Explore what people are building on GitHub</a>
+          `
+        },
+        {
+            title: `Why should I use GitHub?`,
+            content: `
+          <p>GitHub isn’t just a place to share code.</p>
+          <p>It’s a chance to do something bigger. On GitHub, you can shape the future of software, work with the best developers in the world, and grow your skills and help others.</p>
+          <a href="#">See how the world uses GitHub</a>
+          `
+        },
+        {
+            title: `Are Git and GitHub the same?`,
+            content: `
+          <p>Git is a version control system (VCS).</p>
+          <p>GitHub is the platform where Git repositories can be hosted and teams can work on them together.</p>
+          <a href="#">Check out the Git Handbook</a>
+          `
+        },
+        {
+            title: `Do I need Git in order to use GitHub?`,
+            content: `
+          <p>Nope.</p>
+          <p>GitHub repositories can be accessed from both Git and Subversion (SVN) clients.</p>
+          <a href="#">Learn more about support for Subversion clients</a>
+          `
+        },
+        {
+            title: `Is GitHub safe?`,
+            content: `
+          <p>Millions of teams trust GitHub to keep their work safe.</p>
+          <p>While security incidents can happen, our GitHub Security Team goes beyond industry standards to keep you and your code secure.</p>
+          <a href="#">Stay up to date on our security process</a>
+          `
+        },
+        {
+            title: `Is GitHub free?`,
+            content: `
+          <p>All GitHub users and teams get free, unlimited access to public and private repositories.</p>
+          <p>But if you’re looking for more collaboration features, security controls, and deployment options, we also offer paid plans: GitHub Pro, GitHub Team at $4 per user/month, and GitHub Enterprise at $21 per user/month.</p>
+          <a href="#">Compare all GitHub plans and pricing</a>
+          `
+        }
+    ];
+</script>
+
+<script type="text/babel">
+    const {
+        Typography,
+        Container,
+        Box,
+        SvgIcon,
+        styled,
+        Button,
+        Dialog,
+        DialogContent,
+        DataGrid,
+        Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
+        InputLabel, MenuItem, FormControl, Select
+    } = MaterialUI;
+
+    const ArrowBack = (props) => {
+        return (
+            <SvgIcon {...props}>
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+            </SvgIcon>
+        );
+    };
+
+    const ArrowForwardIos = (props) => {
+        return (
+            <SvgIcon {...props}>
+                <path d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"></path>
+            </SvgIcon>
+        );
+    };
+
+    const ThemedBackButton = styled(Button)(() => ({
+        textTransform: "none",
+        fontFamily: "Manrope",
+        fontWeight: "bold",
+        color: "#000",
+        fontSize: "1em",
+        fontFamily: "Manrope",
+        backgroundColor: "var(--button-active-bg-color1)",
+        "&:hover": {
+            backgroundColor: "var(--button-active-bg-color1)"
+        },
+        borderRadius: "0.5em"
+    }));
+
+    const StretchedBox = () => {
+        return <Box style={{ flex: 1 }}></Box>;
+    };
+
+    const ActionHeader = ({ children, bgClassName, ...rest }) => {
+        return (
+            <Box
+                className={`action-header-container ${
+                    bgClassName ? bgClassName : ""
+                }`}
+                {...rest}
+            >
+                {children}
+            </Box>
+        );
+    };
+
+    const FAQItem = ({ item }) => {
+        const { title, content } = item;
+
+        const [showView, setShowView] = React.useState(false);
+
+        const handleFAQItemClick = () => {
+            setShowView(true);
+        };
+        const handleBackClick = () => {
+            setShowView(false);
+        };
+
+        return (
+            <>
+                <Box className="faq-container" onClick={handleFAQItemClick}>
+                    <Typography className="faq-title">{title}</Typography>
+                    <ArrowForwardIos
+                        fontSize="small"
+                        htmlColor="var(--button-icon-bg-color)"
+                    />
+                </Box>
+
+                <Dialog open={showView} onClose={handleBackClick} fullScreen>
+                    <ActionHeader bgClassName="white-bg">
+                        <Box flex={1} display="flex" alignItems="center" width="100%">
+                            <ThemedBackButton
+                                className="contained-button"
+                                variant="contained"
+                                disableElevation
+                                disableRipple
+                                startIcon={
+                                    <Box className="icon-container">
+                                        <ArrowBack
+                                            fontSize="small"
+                                            htmlColor="var(--button-icon-color)"
+                                        />
+                                    </Box>
+                                }
+                                onClick={handleBackClick}
+                            >
+                                Back to FAQ
+                            </ThemedBackButton>
+                        </Box>
+                    </ActionHeader>
+                    <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
+                        <Container maxWidth="md">
+                            <Typography className="faq-title-header">{title}</Typography>
+                            <div dangerouslySetInnerHTML={{ __html: content }}></div>
+                        </Container>
+                    </DialogContent>
+                </Dialog>
+            </>
+        );
+    };
+</script>
+<script type="text/babel">
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'firstName', headerName: 'First name', width: 130 },
+        { field: 'lastName', headerName: 'Last name', width: 130 },
+        {
+            field: 'age',
+            headerName: 'Age',
+            type: 'number',
+            width: 90,
+        },
+        {
+            field: 'fullName',
+            headerName: 'Full name',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            width: 160,
+            valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+        },
+    ];
+
+    const rows = [
+        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    ];
+
+    const DataTable = () => {
+        return (
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                />
+            </div>
+        );
+    }
+</script>
+<script type="text/babel">
+    function createData(name, calories, fat, carbs, protein) {
+        return {name, calories, fat, carbs, protein};
+    }
+
+    const rows = [
+        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+        createData('Eclair', 262, 16.0, 24, 6.0),
+        createData('Cupcake', 305, 3.7, 67, 4.3),
+        createData('Gingerbread', 356, 16.0, 49, 3.9),
+    ];
+
+    function BasicTable() {
+        return (
+            <TableContainer component={Paper}>
+                <Table sx={{minWidth: 650}} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Dessert (100g serving)</TableCell>
+                            <TableCell align="right">Calories</TableCell>
+                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <TableRow
+                                key={row.name}
+                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.calories}</TableCell>
+                                <TableCell align="right">{row.fat}</TableCell>
+                                <TableCell align="right">{row.carbs}</TableCell>
+                                <TableCell align="right">{row.protein}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        );
+    }
+
+</script>
+<script type="text/babel">
+    function BasicSelect( {items} ) {
+
+        const [age, setAge] = React.useState('');
+
+        const handleChange = (event) => {
+            setAge(event.target.value);
+        };
+
+        return (
+            <Box sx={{ minWidth: 120, maxWidth: 300 }}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Age"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                        {
+                            items.map( (item, idx) => <MenuItem value={item.value}>{item.label}</MenuItem> )
+                        }
+                    </Select>
+                </FormControl>
+            </Box>
+        );
+    }
+</script>
+<script type="text/babel">
+    const App = () => {
+        React.useEffect(() => {
+            //TODO
+        }, []);
+
+        const handleBackClick = () => {};
+
+        return (
+            <>
+                <br/>
+                <BasicSelect
+                    items={[
+                        {"value": 1, "label":"one"}
+                    ]}
+                />
+                <BasicTable/>
+                <Box className={`app-container white-bg`}>
+                    <ActionHeader bgClassName="white-bg">
+                        <Box flex={1} display="flex" alignItems="center" width="100%">
+                            <ThemedBackButton
+                                className="contained-button"
+                                variant="contained"
+                                disableElevation
+                                disableRipple
+                                startIcon={
+                                    <Box className="icon-container">
+                                        <ArrowBack
+                                            fontSize="small"
+                                            htmlColor="var(--button-icon-color)"
+                                        />
+                                    </Box>
+                                }
+                                onClick={handleBackClick}
+                            >
+                                Back to Github
+                            </ThemedBackButton>
+                            <StretchedBox />
+                        </Box>
+                    </ActionHeader>
+                    <Box className="app-content">
+                        <Container maxWidth="md">
+                            <Typography className="faq-header">
+                                Frequently Asked Questions
+                            </Typography>
+                        </Container>
+                        <Container maxWidth="md">
+                            {faqData.map((item, index) => (
+                                <>
+                                    <FAQItem key={`faq_item_${index}`} item={item} />
+                                </>
+                            ))}
+                        </Container>
+                    </Box>
+                </Box>
+            </>
+        );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+</script>
+</body>
+</html>
