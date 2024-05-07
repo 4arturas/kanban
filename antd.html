@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React and Ant Design browser example</title>
+
+    <script src="https://unpkg.com/@babel/standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.24.16/antd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.24.16/antd.min.css"/>
+
+
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    const columns = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+        },
+        {
+            title: 'Age',
+            dataIndex: 'age',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+        },
+        {
+            title: 'test1',
+            dataIndex: 'test1',
+        },
+        {
+            title: 'test2',
+            dataIndex: 'test2',
+        },
+        {
+            title: 'test3',
+            dataIndex: 'test3',
+        },
+        {
+            title: 'test4',
+            dataIndex: 'test4',
+        },
+    ];
+
+    const dataSource = [];
+    for (let i = 0; i < 46; i++) {
+        dataSource.push({
+            key: i,
+            name: `Edward King ${i}`,
+            age: 32,
+            address: `London, Park Lane no. ${i}`,
+            test1: i,
+            test2: i,
+            test3: i,
+            test4: i
+        });
+    }
+
+
+</script>
+
+<script type="text/babel">
+    const App = () => {
+        const [liked, setLiked] = React.useState(false);
+        if (liked) return <p>You liked this</p>
+        return <div>
+            <br/>
+            <br/>
+            <br/>
+            <div>
+                <antd.Table
+                    dataSource={dataSource}
+                    columns={columns}
+                    bordered="true"
+                    scroll={{ x: "max-content", y: 200 }}
+                />
+            </div>
+            <antd.Button type="primary" onClick={() => setLiked(true)}>Primary Button</antd.Button>
+        </div>
+    };
+</script>
+
+<script type="text/babel">
+    ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+    );
+</script>
+
+</body>
+</html>
